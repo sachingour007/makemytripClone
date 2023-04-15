@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  // const history = useNavigate();
+  const navigate = useNavigate();
   const [signupFormData, setSignupFormData] = useState({
     id: "",
     name: "",
@@ -33,19 +33,14 @@ const SignUp = () => {
         password: signupFormData.password,
       }
 
-      // const allInputData = {
-      //   id: new Date().getTime().toString(),
-      //   name: signupFormData,
-      // };
-      // setSignUpData([...signUpData, signupFormData]);
-
       if (storeData != null) {
         localStorage.setItem(
           "makemytrip",
-          JSON.stringify([...storeData, data])
-        );
+          JSON.stringify([...storeData, data]));
+        navigate("/login")
       } else {
         localStorage.setItem("makemytrip", JSON.stringify([data]));
+        navigate("/login")
         
       }
     }
